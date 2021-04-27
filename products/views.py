@@ -5,6 +5,7 @@ from django.shortcuts import render
 from rest_framework import status
 
 import openpyxl
+import os
 
 # Rest Framework Imports
 from rest_framework.decorators import api_view
@@ -157,8 +158,10 @@ def my_product_filters(request, token):
 
 
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+file = os.path.join(BASE_DIR, "products/file.xlsx")
+wb = openpyxl.load_workbook(file)
 
-wb = openpyxl.load_workbook("https://docs.google.com/spreadsheets/d/1TqpGJRsHqpGSviLOuinDXszI_rJdvxoXpUibNdce39o/edit?usp=sharing")
 # wb = openpyxl.load_workbook('file.xlsx')
 sh1 = wb['Sheet1']
 row = sh1.max_row
