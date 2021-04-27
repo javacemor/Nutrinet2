@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Nutrinet - Helping you make better nutrition decision"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/font/fa/css/all.css">
+    <!-- <link rel="stylesheet" href="./assets/aos/dist/aos.css"> -->
+    <link rel="stylesheet" href="./assets/css/utilities.css">    
+    <link rel="stylesheet" href="./assets/css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="./assets/css/dashboard.css"> 
+    <title>Faites vos courses avec - Nutrinet</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <div id="root"></div>
+
+    <script>
+      function handleNavbarClick() {
+        alert('hahahahhaha')
+        const hamburger = document.querySelector(".hamburger");
+
+        const navLinks = document.querySelector(".nav-links");
+
+        const links = document.querySelectorAll(".nav-links li");
+
+        hamburger.addEventListener("click", () =>{
+            navLinks.classList.toggle("open");
+
+            links.forEach(link =>{
+                link.classList.toggle('fade');
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
