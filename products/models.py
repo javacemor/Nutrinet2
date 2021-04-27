@@ -2,7 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from lib2to3.tests.data.infinite_recursion import BIO
+# from lib2to3.tests.data.infinite_recursion import BIO
 
 #from django.dispatch import receiver
 #from ShoppingList.admin import UserAdmin
