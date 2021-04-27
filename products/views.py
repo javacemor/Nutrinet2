@@ -158,7 +158,7 @@ def my_product_filters(request, token):
 
 
 
-wb = openpyxl.load_workbook("C:\\Users\\OBED IFEOMA\\Documents\\Tutorials\\Python\\Django\\Sabi Programmer\\Clients\\Nutrinet\\backend\\products\\file.xlsx")
+wb = openpyxl.load_workbook("https://docs.google.com/spreadsheets/d/1TqpGJRsHqpGSviLOuinDXszI_rJdvxoXpUibNdce39o/edit?usp=sharing")
 # wb = openpyxl.load_workbook('file.xlsx')
 sh1 = wb['Sheet1']
 row = sh1.max_row
