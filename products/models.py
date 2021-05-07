@@ -209,33 +209,33 @@ class UserProfile(models.Model):
   
 class Product(models.Model):
 
-    code=models.CharField(max_length=2000,default=0, null=True, blank=True) #barcode of the product (can be EAN_13 or internal codes for some food stores), for products without a barcode, Open Food Facts assigns a number starting with the 200 reserved prefix
-    product_name =models.CharField(max_length=2000,default='No Name', null=True, blank=True) #name of the product
-    generic_name=models.CharField(max_length=2000,default='No Generic Name', null=True, blank=True)
+    code=models.CharField(max_length=90000,default=0, null=True, blank=True) #barcode of the product (can be EAN_13 or internal codes for some food stores), for products without a barcode, Open Food Facts assigns a number starting with the 200 reserved prefix
+    product_name =models.CharField(max_length=90000,default='No Name', null=True, blank=True) #name of the product
+    generic_name=models.CharField(max_length=90000,default='No Generic Name', null=True, blank=True)
     quantity =models.DecimalField(max_digits=8, decimal_places=2, default=1.00) #quantity and unit
-    unit_quantity=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    packaging=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    brands=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    categories=models.CharField(max_length=2000, null=True)
-    origins=models.CharField(max_length=2000,default=0, null=True, blank=True) #origins of ingredients
-    labels=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    stores=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    countries=models.CharField(max_length=2000,default=0, null=True, blank=True) #list of countries where the product is sold
-    ingredients_text=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    allergens_tags=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    traces=models.CharField(max_length=2000,default='no traces')
+    unit_quantity=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    packaging=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    brands=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    categories=models.CharField(max_length=90000, null=True)
+    origins=models.CharField(max_length=90000,default=0, null=True, blank=True) #origins of ingredients
+    labels=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    stores=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    countries=models.CharField(max_length=90000,default=0, null=True, blank=True) #list of countries where the product is sold
+    ingredients_text=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    allergens_tags=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    traces=models.CharField(max_length=90000,default='no traces')
     additives_n=models.DecimalField(max_digits=8, decimal_places=2, default=0) #number of food additives
-    additives_tags=models.CharField(max_length=2000, default=0, null=True, blank=True)# name of additives
+    additives_tags=models.CharField(max_length=90000, default=0, null=True, blank=True)# name of additives
     ingredients_from_palm_oil_n=models.DecimalField(max_digits=8, decimal_places=2, default=0)#Num ingredientes, si mas de uno decir q de palm oil
-    nutriscore_grade=models.CharField(max_length=200,default=0, null=True, blank=True) #nutrition grade ('a' to 'e'). see http://fr.openfoodfacts.org/score_nutritionnel_experimental_france
+    nutriscore_grade=models.CharField(max_length=90000,default=0, null=True, blank=True) #nutrition grade ('a' to 'e'). see http://fr.openfoodfacts.org/score_nutritionnel_experimental_france
     nova_group=models.IntegerField(default=0) 
-    pnns_groups_1=models.CharField(max_length=2000,default=0, null=True, blank=True) #GRUPOS PARA ELEGIR
-    pnns_groups_2=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    main_category=models.CharField(max_length=2000,default=0, null=True)
-    image_url=models.CharField(max_length=2000,default=0, null=True)
-    image_small_url=models.CharField(max_length=2000,default=0, null=True)
-    image_ingredients_url=models.CharField(max_length=2000,default=0, null=True, blank=True)
-    image_nutrition_url=models.CharField(max_length=2000,default=0, null=True, blank=True)
+    pnns_groups_1=models.CharField(max_length=90000,default=0, null=True, blank=True) #GRUPOS PARA ELEGIR
+    pnns_groups_2=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    main_category=models.CharField(max_length=90000,default=0, null=True)
+    image_url=models.CharField(max_length=90000,default=0, null=True)
+    image_small_url=models.CharField(max_length=90000,default=0, null=True)
+    image_ingredients_url=models.CharField(max_length=90000,default=0, null=True, blank=True)
+    image_nutrition_url=models.CharField(max_length=90000,default=0, null=True, blank=True)
     energy_kcal_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     saturated_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
