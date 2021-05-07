@@ -1,4 +1,8 @@
-import React from 'react'
+import React from 'react';
+
+import dietImage from '../images/diet.svg';
+import barbecueImage from '../images/barbecue.svg';
+import statisticsImage from '../images/statistics.svg';
 
 function WhatNutrinetIsAbout() {
     return (
@@ -14,21 +18,21 @@ function WhatNutrinetIsAbout() {
                     en matière de nutrition. Tout le monde doit avoir accés á une alimentation équilibrée et de forme gratuite.
                 </div>
                 <div className="our-strength grid mb-5" data-aos="fade-down">
-                    <img src="images/diet.svg" alt="" />
+                    <img src={dietImage} alt="dietImage" />
                     <p>
                         Tout le monde
                         doit avoir accès à une alimentation équilibrée et de forme gratuite.
                     </p>
                 </div>
                 <div className="our-strength grid mb-5" data-aos="zoom-in">
-                    <img src="images/barbecue.svg" alt="" />
+                    <img src={barbecueImage} alt="barbecue" />
                     <p>
                         Dans notre société actuelle, nous sommes de plus en plus conscients des bénéfices
                         d’une bonne alimentation
                     </p>
                 </div>
                 <div className="our-strength grid mb-5" data-aos="fade-up">
-                    <img src="images/statistics.svg" alt="" />
+                    <img src={statisticsImage} alt="statistics" />
                     <p>
                         Nous utilisons le système de calcul recommandé par l’organisation mondial de la santé pour
                         vous offrir une information précise et adaptée à vos goûts et besoins alimentaires.

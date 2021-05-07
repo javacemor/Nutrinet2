@@ -205,90 +205,82 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return self.user.username
-    
-    
-
-
 
   
 class Product(models.Model):
 
-    code=models.CharField(max_length=200,default=0) #barcode of the product (can be EAN_13 or internal codes for some food stores), for products without a barcode, Open Food Facts assigns a number starting with the 200 reserved prefix
-    product_name =models.CharField(max_length=200,default=0, null=True) #name of the product
-    generic_name=models.CharField(max_length=200,default=0)
-    quantity =models.DecimalField(max_digits=8, decimal_places=2, default=1) #quantity and unit
-    unit_quantity=models.CharField(max_length=200,default=0)
-    packaging=models.CharField(max_length=200,default=0)
-    brands=models.CharField(max_length=200,default=0)
+    code=models.CharField(max_length=200,default=0, null=True, blank=True) #barcode of the product (can be EAN_13 or internal codes for some food stores), for products without a barcode, Open Food Facts assigns a number starting with the 200 reserved prefix
+    product_name =models.CharField(max_length=200,default='No Name', null=True, blank=True) #name of the product
+    generic_name=models.CharField(max_length=200,default='No Generic Name', null=True, blank=True)
+    quantity =models.DecimalField(max_digits=8, decimal_places=2, default=1.00) #quantity and unit
+    unit_quantity=models.CharField(max_length=200,default=0, null=True, blank=True)
+    packaging=models.CharField(max_length=200,default=0, null=True, blank=True)
+    brands=models.CharField(max_length=200,default=0, null=True, blank=True)
     categories=models.CharField(max_length=200, null=True)
-    origins=models.CharField(max_length=200,default=0) #origins of ingredients
-    labels=models.CharField(max_length=200,default=0)
-    stores=models.CharField(max_length=200,default=0)
-    countries=models.CharField(max_length=200,default=0) #list of countries where the product is sold
-    ingredients_text=models.CharField(max_length=200,default=0)
-    allergens_tags=models.CharField(max_length=200,default=0)
-    traces=models.CharField(max_length=200,default=0)
+    origins=models.CharField(max_length=200,default=0, null=True, blank=True) #origins of ingredients
+    labels=models.CharField(max_length=200,default=0, null=True, blank=True)
+    stores=models.CharField(max_length=200,default=0, null=True, blank=True)
+    countries=models.CharField(max_length=200,default=0, null=True, blank=True) #list of countries where the product is sold
+    ingredients_text=models.CharField(max_length=200,default=0, null=True, blank=True)
+    allergens_tags=models.CharField(max_length=200,default=0, null=True, blank=True)
+    traces=models.CharField(max_length=200,default='no traces')
     additives_n=models.DecimalField(max_digits=8, decimal_places=2, default=0) #number of food additives
-    additives_tags=models.CharField(max_length=200, default=0)# name of additives
+    additives_tags=models.CharField(max_length=200, default=0, null=True, blank=True)# name of additives
     ingredients_from_palm_oil_n=models.DecimalField(max_digits=8, decimal_places=2, default=0)#Num ingredientes, si mas de uno decir q de palm oil
-    nutriscore_grade=models.CharField(max_length=200,default=0) #nutrition grade ('a' to 'e'). see http://fr.openfoodfacts.org/score_nutritionnel_experimental_france
+    nutriscore_grade=models.CharField(max_length=200,default=0, null=True, blank=True) #nutrition grade ('a' to 'e'). see http://fr.openfoodfacts.org/score_nutritionnel_experimental_france
     nova_group=models.IntegerField(default=0) 
-    pnns_groups_1=models.CharField(max_length=200,default=0) #GRUPOS PARA ELEGIR
-    pnns_groups_2=models.CharField(max_length=200,default=0)
+    pnns_groups_1=models.CharField(max_length=200,default=0, null=True, blank=True) #GRUPOS PARA ELEGIR
+    pnns_groups_2=models.CharField(max_length=200,default=0, null=True, blank=True)
     main_category=models.CharField(max_length=200,default=0, null=True)
     image_url=models.CharField(max_length=200,default=0, null=True)
     image_small_url=models.CharField(max_length=200,default=0, null=True)
-    image_ingredients_url=models.CharField(max_length=200,default=0)
-    image_nutrition_url=models.CharField(max_length=200,default=0)
-    energy_kcal_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    saturated_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    monounsaturated_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    polyunsaturated_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    omega_3_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    omega_6_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    trans_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    carbohydrates_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    sugars_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    image_ingredients_url=models.CharField(max_length=200,default=0, null=True, blank=True)
+    image_nutrition_url=models.CharField(max_length=200,default=0, null=True, blank=True)
+    energy_kcal_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    saturated_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    monounsaturated_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    polyunsaturated_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    omega_3_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    omega_6_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    trans_fat_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    carbohydrates_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00, null=True)
+    sugars_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     fiber_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    proteins_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    salt_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    sodium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    alcohol_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0) #% vol of alcohol. Mas para ver si algo sin alcohol
-    vitamin_a_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_d_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_e_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_c_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_b1_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_b2_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_b3_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0) #tb llamada pp
-    vitamin_b6_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_b9_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    vitamin_b12_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    biotin_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    pantothenic_acid_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    potassium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    calcium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    phosphorus_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    iron_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    magnesium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    zinc_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    copper_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    manganese_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    selenium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    iodine_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    caffeine_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    fruits_vegetables_nuts_estimate_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    cocoa_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    carbon_footprint_from_meat_or_fish_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    price=models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    proteins_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    salt_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    sodium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    alcohol_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00) #% vol of alcohol. Mas para ver si algo sin alcohol
+    vitamin_a_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_d_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_e_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_c_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_b1_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_b2_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_b3_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00) #tb llamada pp
+    vitamin_b6_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_b9_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    vitamin_b12_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    biotin_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    pantothenic_acid_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    potassium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    calcium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    phosphorus_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    iron_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    magnesium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    zinc_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    copper_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    manganese_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    selenium_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    iodine_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    caffeine_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    fruits_vegetables_nuts_estimate_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    cocoa_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    carbon_footprint_from_meat_or_fish_100g=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    price=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     
     def __str__(self):
         return str(self.product_name)
-    
-    
-   
-
 
 
 class GroceryList(models.Model): #choice, dentro de Grocery profile

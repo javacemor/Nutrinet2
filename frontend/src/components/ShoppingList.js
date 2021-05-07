@@ -37,7 +37,7 @@ function ShoppingList() {
 
     // REMOVE/DELETE PRODUCT FROM USER'S GROCERY'S LIST
     const deleteProduct = (product_id) =>{
-        fetch(`http://localhost:8000/api/products/my_products/${token['loggedIn']}`, {
+        fetch(`api/products/my_products/${token['loggedIn']}`, {
             'method': 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ function ShoppingList() {
         })
         // .then(response => response.json())
         .then(() => {
-            fetch(`http://localhost:8000/api/products/my_products/${token['loggedIn']}`)
+            fetch(`api/products/my_products/${token['loggedIn']}`)
             .then(res => {
                 if(!res.ok){
                     throw Error('could not fetch data from the endpoint');
@@ -72,7 +72,7 @@ function ShoppingList() {
 
     // INCREMENT or DECREMENT THE UNIT/QUANTITY OF A PARTICULAR PRODUCT
     const ProductUnitChange = (product_id, action, weeks=1) => {
-        fetch(`http://localhost:8000/api/products/my_products/${token['loggedIn']}`, {
+        fetch(`api/products/my_products/${token['loggedIn']}`, {
             'method': 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ function ShoppingList() {
         })
         // .then(response => response.json())
         .then(() => {
-            fetch(`http://localhost:8000/api/products/my_products/${token['loggedIn']}`)
+            fetch(`api/products/my_products/${token['loggedIn']}`)
             .then(res => {
                 if(!res.ok){
                     throw Error('could not fetch data from the endpoint');

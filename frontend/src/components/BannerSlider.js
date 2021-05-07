@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import React from 'react';
+import bgImage from '../images/bg1.jpg';
 
 function BannerSlider() {
     return (
@@ -7,7 +8,7 @@ function BannerSlider() {
             <section>
                 <div className="banner">
                     <div className="slider">
-                        <img src="images/bg1.jpg" id="slideImg" alt=""/>
+                        <img src={bgImage} id="slideImg" alt=""/>
                     </div>
                     <div className="overlay">
                         <div className="content flex">

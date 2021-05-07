@@ -84,7 +84,7 @@ function Dashboard() {
                 }
             });
         })
-        .catch(error => alert(error))
+        .catch(error => console.log(error))
     }
 
     // REMOVE/DELETE PRODUCT FROM USER'S GROCERY'S LIST
@@ -167,7 +167,7 @@ function Dashboard() {
             api/users/profile_details/${token['loggedIn']}`)
             .then(response => response.json())
             .then(data => setNutrientDetails(data))
-            .catch(error => alert(error))
+            .catch(error => console.log(error))
     }, [myProducts, loading, err, token])
 
     return (

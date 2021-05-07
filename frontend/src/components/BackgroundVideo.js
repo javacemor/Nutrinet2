@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
+import bgVideo from '../images/vid.mp4';
 
 function BackgroundVideo() {
     const [trailerClass, setTrailerClass] = useState(true);
@@ -16,7 +18,7 @@ function BackgroundVideo() {
             <section id="watch-demo">
                 <div className="bg-hero">
                     <video autoPlay muted loop className="video-bg">
-                        <source src="images/vid.mp4" type="video/mp4" />
+                        <source src={bgVideo} type="video/mp4" />
                     </video>
                 </div>
             </section>

@@ -174,31 +174,152 @@ def testing(request):
 
     product_list = []
 
-    for x in range(1, 1001):
+    for x in range(1, 509):
         product_dict = {}
         for i in range(1, column + 1):
             key = sh1.cell(row=1, column=i).value
             value = sh1.cell(row=x + 1, column=i).value
             product_dict[key] = value
         product_list.append(product_dict)
-
     for a in product_list:
         code = a['code']
         product_name = a['product_name']
+        generic_name = a['generic_name']
+        quantity = a['quantity']
+        unit_quantity = a['unit quantity']
+        packaging = a['packaging']
+        brands = a['brands']
         categories = a['categories']
+        origins = a['origins']
+        labels = a['labels']
+        stores = a['stores']
+        countries = a['countries']
+        ingredients_text = a['ingredients_text']
+        allergens_tags = a['allergens_tags']
+        traces = a['traces']
+        additives_n = a['additives_n']
+        additives_tags = a['additives_tags']
+        ingredients_from_palm_oil_n = a['ingredients_from_palm_oil_n']
+        nutriscore_grade = a['nutriscore_grade']
+        nova_group = a['nova_group']
+        pnns_groups_1 = a['pnns_groups_1']
+        pnns_groups_2 = a['pnns_groups_2']
+        main_category = a['main_category']
         image_url = a['image_url']
         image_small_url = a['image_small_url']
-        main_category = a['main_category']
-        pnns_groups_1 = a['pnns_groups_1']
+        image_ingredients_url = a['image_ingredients_url']
+        image_nutrition_url = a['image_nutrition_url']
+        energy_kcal_100g = a['energy-kcal_100g']
+        fat_100g = a['fat_100g']
+        saturated_fat_100g = a['saturated-fat_100g']
+        monounsaturated_fat_100g = a['monounsaturated-fat_100g']
+        polyunsaturated_fat_100g = a['polyunsaturated-fat_100g']
+        omega_3_fat_100g = a['omega-3-fat_100g']
+        omega_6_fat_100g = a['omega-6-fat_100g']
+        trans_fat_100g = a['trans-fat_100g']
+        carbohydrates_100g = a['carbohydrates_100g']
+        sugars_100g = a['sugars_100g']
+        fiber_100g = a['fiber_100g']
+        proteins_100g = a['proteins_100g']
+        salt_100g = a['salt_100g']
+        sodium_100g = a['sodium_100g']
+        alcohol_100g = a['alcohol_100g']
+        vitamin_a_100g = a['vitamin-a_100g']
+        vitamin_d_100g = a['vitamin-d_100g']
+        vitamin_e_100g = a['vitamin-e_100g']
+        vitamin_c_100g = a['vitamin-c_100g']
+        vitamin_b1_100g = a['vitamin-b1_100g']
+        vitamin_b2_100g = a['vitamin-b2_100g']
+        vitamin_b6_100g = a['vitamin-b6_100g']
+        vitamin_b9_100g = a['vitamin-b9_100g']
+        vitamin_b12_100g = a['vitamin-b12_100g']
+        biotin_100g = a['biotin_100g']
+        pantothenic_acid_100g = a['pantothenic-acid_100g']
+        potassium_100g = a['potassium_100g']
+        calcium_100g = a['calcium_100g']
+        phosphorus_100g = a['phosphorus_100g']
+        iron_100g = a['iron_100g']
+        magnesium_100g = a['magnesium_100g']
+        zinc_100g = a['zinc_100g']
+        copper_100g = a['copper_100g']
+        manganese_100g = a['manganese_100g']
+        selenium_100g = a['selenium_100g']
+        iodine_100g = a['iodine_100g']
+        caffeine_100g = a['caffeine_100g']
+        fruits_vegetables_nuts_estimate_100g = a['fruits-vegetables-nuts-estimate_100g']
+        cocoa_100g = a['cocoa_100g']
+        carbon_footprint_from_meat_or_fish_100g = a['carbon-footprint-from-meat-or-fish_100g']
+        price = a['Price']
         
         Product.objects.create(
             code= code,
             product_name=product_name,
-            categories = categories,
-            image_url = image_url,
-            image_small_url = image_small_url,
-            main_category = main_category,
-            pnns_groups_1=pnns_groups_1
+            generic_name=generic_name,
+            quantity=quantity,
+            unit_quantity=unit_quantity,
+            packaging=packaging,
+            brands=brands,
+            categories=categories,
+            origins=origins,
+            labels=labels,
+            stores=stores,
+            countries=countries,
+            ingredients_text=ingredients_text,
+            allergens_tags=allergens_tags,
+            traces=traces,
+            additives_n=additives_n,
+            additives_tags=additives_tags,
+            ingredients_from_palm_oil_n=ingredients_from_palm_oil_n,
+            nutriscore_grade=nutriscore_grade,
+            nova_group=nova_group,
+            pnns_groups_1=pnns_groups_1,
+            pnns_groups_2=pnns_groups_2,
+            main_category=main_category,
+            image_url=image_url,
+            image_small_url=image_small_url,
+            image_ingredients_url=image_ingredients_url,
+            image_nutrition_url=image_nutrition_url,
+            energy_kcal_100g=energy_kcal_100g,
+            fat_100g=fat_100g,
+            saturated_fat_100g=saturated_fat_100g,
+            monounsaturated_fat_100g=monounsaturated_fat_100g,
+            polyunsaturated_fat_100g=polyunsaturated_fat_100g,
+            omega_3_fat_100g=omega_3_fat_100g,
+            omega_6_fat_100g=omega_6_fat_100g,
+            trans_fat_100g=trans_fat_100g,
+            carbohydrates_100g=carbohydrates_100g,
+            sugars_100g=sugars_100g,
+            fiber_100g=fiber_100g,
+            proteins_100g=proteins_100g,
+            salt_100g=salt_100g,
+            sodium_100g=sodium_100g,
+            alcohol_100g=alcohol_100g,
+            vitamin_a_100g=vitamin_a_100g,
+            vitamin_d_100g=vitamin_d_100g,
+            vitamin_e_100g=vitamin_e_100g,
+            vitamin_c_100g=vitamin_c_100g,
+            vitamin_b1_100g=vitamin_b1_100g,
+            vitamin_b2_100g=vitamin_b2_100g,
+            vitamin_b6_100g=vitamin_b6_100g,
+            vitamin_b9_100g=vitamin_b9_100g,
+            vitamin_b12_100g=vitamin_b12_100g,
+            biotin_100g=biotin_100g,
+            pantothenic_acid_100g=pantothenic_acid_100g,
+            potassium_100g=potassium_100g,
+            calcium_100g=calcium_100g,
+            phosphorus_100g=phosphorus_100g,
+            iron_100g=iron_100g,
+            magnesium_100g=magnesium_100g,
+            zinc_100g=zinc_100g,
+            copper_100g=copper_100g,
+            manganese_100g=manganese_100g,
+            selenium_100g=selenium_100g,
+            iodine_100g=iodine_100g,
+            caffeine_100g=caffeine_100g,
+            fruits_vegetables_nuts_estimate_100g=fruits_vegetables_nuts_estimate_100g,
+            cocoa_100g=cocoa_100g,
+            carbon_footprint_from_meat_or_fish_100g=carbon_footprint_from_meat_or_fish_100g,
+            price=price,
             )
    
     return render(request, 'products/testing.html')

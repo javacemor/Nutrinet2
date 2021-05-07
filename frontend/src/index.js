@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import App from './App';
-import './dashboard.css';
-import './utilities.css';
-import './styles.css';
+import './css/dashboard.css';
+import './css/utilities.css';
+import './css/styles.css';
 import './fa/css/all.css';
 
 ReactDom.render(<App/>, document.getElementById('root'));

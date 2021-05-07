@@ -28,6 +28,9 @@ function App() {
       <Route path='/products' component={AllProducts} />
       <Route path='/welcome' component={WelcomeScreen} />
       <Route path='/account_settings' component={AccountSettingsScreen} />
+
+
+      {/* <Route exact path='/'> <HomeScreen> </Route> */}
     </Router>
     </CookiesProvider>
   )

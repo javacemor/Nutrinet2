@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+
+import eatingImage from '../images/eating.jpg';
+import bgimage from '../images/bg2.jpg';
 
 function BlogLatest() {
     return (
@@ -7,7 +10,7 @@ function BlogLatest() {
             <h2 className="md"><i className="fas fa-blog"></i>  dernier de notre blog </h2>
             <div className="grid">
                 <div className="card flex" data-aos="slide-right">
-                    <img src="images/eating.jpg" alt="" />
+                    <img src={eatingImage} alt="eating" />
                     <p>
                         <span className="lead">Lorem ipsum dolor sit amet, consectetur tate velit esse</span>
                         <br />
@@ -23,7 +26,7 @@ function BlogLatest() {
                 </div>
 
                 <div className="card flex" data-aos="slide-left">
-                    <img src="images/bg2.jpg" alt="" />
+                    <img src={bgimage} alt="bgimage" />
                     <p>
                         <span className="lead">Lorem ipsum dolor sit amet, consectetur tate velit esse</span>
                         <br />
