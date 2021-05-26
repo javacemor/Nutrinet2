@@ -6,7 +6,7 @@ function MicroNutrientChart({ nutrientDetails }) {
       <>
       <Bar 
         data={{
-          labels: ['Sucres', 'Protéines', 'Sels', 'Fibres'],
+          labels: ['Sucres', 'Graisses saturées', 'Sels', 'Fibres'],
           datasets: [
             {
               label: '# Your Progress',

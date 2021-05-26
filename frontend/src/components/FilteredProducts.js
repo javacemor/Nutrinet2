@@ -1,18 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import useFetch from '../useFetch'
 import Loading from './Loading';
 
 function FilteredProducts({addProduct}) {
-    const {data: products, isLoading, error} = useFetch('api/products');
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [categories, setCategories] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const abortCont = new AbortController();
+
+        fetch('api/products', { signal: abortCont.signal })
+            .then(res => {
+                if(!res.ok){
+                    throw Error('could not fetch data from the endpoint');
+                }
+
+                return res.json();
+            })
+            .then(data => {
+                setAllProducts(data);
+                setProducts(data);
+                setIsLoading(false);
+                setError(false);
+                // new Set(data.map((product) => {
+                //     return setCategories(product.pnns_groups_1)
+                // }))
+                let cat = [];
+                data.map((product) =>{
+                    return cat.push(product.pnns_groups_1);
+                })
+                let newCat = ['All', ...new Set(cat)]
+                setCategories(newCat);
+            })
+            .catch(err =>{
+                if (err.name === 'AbortError'){
+                    console.log('fetch aborted');
+                }else{
+                    setError(err.message);
+                    setIsLoading(false);
+                }
+            });
+        return () => abortCont.abort();
+
+    }, []);
 
     const selectCategory = (selectedCategory)=>{
-        if (selectedCategory === 'all'){
-            setAllProducts(products)
+        if (selectedCategory === 'All'){
+            setProducts(allProducts)
         }else{
-            const newItems = products.filter((item) => item.pnns_groups_1 === selectedCategory);
-            setAllProducts(newItems)
+            const newItems = allProducts.filter((item) => item.pnns_groups_1 === selectedCategory);
+            setProducts(newItems)
         }
     }
     
@@ -23,13 +63,11 @@ function FilteredProducts({addProduct}) {
                        <h3>Categories</h3>
                        <p className="category-section mt-2">
                            <select style={{width:'100px'}} className="select-product-category" onChange={(e) => selectCategory(e.target.value)}>
-                           <option selected value='all'> Select </option>
-                            <option value='all'> All </option>
                             <optgroup>
                             {
-                                products && new Set(products.map((product) => (
-                                    <option value={product.pnns_groups_1}>{product.pnns_groups_1}</option>
-                                )))
+                                categories && categories.map((category) => (
+                                    <option value={category}>{category}</option>
+                                ))
                             }
                             </optgroup>
                            </select>
@@ -45,7 +83,7 @@ function FilteredProducts({addProduct}) {
                        <div className="products-section mt-2">
                             {error && <h5>{error}</h5>}
                             {isLoading && <Loading />}
-                            {products && allProducts.map((product) =>(
+                            {products && products.map((product) =>(
                                 <div className="single-product" key={product.id}>
                                     <img src={product.image_url} alt=''/>
                                     <h4>{product.product_name}</h4> 
@@ -53,8 +91,6 @@ function FilteredProducts({addProduct}) {
                                     <Link to="#" className="btn-sm mt-1" onClick={() => addProduct(product.id)}><i className="fas fa-plus-circle"></i>&nbsp; Add</Link>
                                 </div>
                             )) }
-                      
-                           
                        </div>
                    </div>
                 </div>  
