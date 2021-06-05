@@ -95,9 +95,6 @@ def profile_details(request, token):
         for fib in Fibers:
             Fiberstotal+=fib
 
-        print('HERE: ', kcaltotal)
-
-
         details = {
             'kcal_week_goal': profile.kcal_week_goal(),
             'fats_max': profile.fats_max(),

@@ -10,6 +10,10 @@ function DashboardTemplates({section}) {
     const [token, setToken, removeToken] = useCookies(['loggedIn']);
     const [username, setUsername] = useState('');
 
+    const handleSearch = () =>{
+        alert('hello');
+    }
+
     const handleLogout = () =>{
         removeToken('loggedIn');
     }
@@ -91,10 +95,10 @@ function DashboardTemplates({section}) {
                             <span>Home</span>
                         </Link>
                     </h2>
-                    <div className="search-wrapper">
+                    {/* <div className="search-wrapper">
                         <span className="fas fa-search"></span>
-                        <input type="search" name="search" placeholder="search products..." />
-                    </div>
+                        <input type="search" name="search" placeholder="search products..." onSubmit={handleSearch} on />
+                    </div> */}
                     <div className="user-wrapper">
                         {/* <img src="./assets/images/user1.png" width="40px" height="40px" alt="" /> */}
                         <div>

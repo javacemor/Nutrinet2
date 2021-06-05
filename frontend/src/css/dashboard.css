@@ -379,6 +379,9 @@ main.main-sidebar .all-products .product button{
 a{
 	color: var(--main-color);
 }
+.makeChartFlex{
+	display: flex;
+}
 
 /*MEDIA QUERY*/
 
@@ -667,6 +670,9 @@ input.filter-input{
 	}
 	main.main-sidebar .all-products{
 		grid-template-columns: repeat(3, 1fr);
+	}
+	.makeChartFlex{
+		display: block;
 	}
 }
 @media only screen and (max-width: 450px){
