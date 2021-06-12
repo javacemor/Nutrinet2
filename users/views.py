@@ -65,7 +65,7 @@ def profile_details(request, token):
             Sugars.append(produ.product.sugars_100g*produ.product.quantity*produ.units/(100*produ.weeks))
             Salts.append(produ.product.salt_100g*produ.product.quantity*produ.units/(100*produ.weeks))
             Fibers.append(produ.product.fiber_100g*produ.product.quantity*produ.units/(100*produ.weeks))
-    
+
         kcaltotal=0
         Fattotal=0
         Carbototal=0

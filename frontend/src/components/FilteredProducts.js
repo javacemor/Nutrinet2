@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 
@@ -9,10 +10,12 @@ function FilteredProducts({addProduct}) {
     const [allProducts, setAllProducts] = useState([]);
     const [products, setProducts] = useState([]);
 
+    const [token, setToken] = useCookies(['loggedIn']);
+
     useEffect(() => {
         const abortCont = new AbortController();
 
-        fetch('api/products', { signal: abortCont.signal })
+        fetch(`api/products/my_product_filters/${token['loggedIn']}`, { signal: abortCont.signal })
             .then(res => {
                 if(!res.ok){
                     throw Error('could not fetch data from the endpoint');
@@ -21,15 +24,15 @@ function FilteredProducts({addProduct}) {
                 return res.json();
             })
             .then(data => {
-                setAllProducts(data);
-                setProducts(data);
+                setAllProducts(data.data);
+                setProducts(data.data);
                 setIsLoading(false);
                 setError(false);
                 // new Set(data.map((product) => {
                 //     return setCategories(product.pnns_groups_1)
                 // }))
                 let cat = [];
-                data.map((product) =>{
+                data.data.map((product) =>{
                     return cat.push(product.pnns_groups_1);
                 })
                 let newCat = ['All', ...new Set(cat)]
@@ -86,7 +89,7 @@ function FilteredProducts({addProduct}) {
                             {products && products.map((product) =>(
                                 <div className="single-product" key={product.id}>
                                     <img src={product.image_url} alt=''/>
-                                    <h4>{product.product_name}</h4> 
+                                    <h5>{product.product_name.substring(0, 15)}</h5> 
                                     {/* <p>brief description will</p> */}
                                     <Link to="#" className="btn-sm mt-1" onClick={() => addProduct(product.id)}><i className="fas fa-plus-circle"></i>&nbsp; Add</Link>
                                 </div>

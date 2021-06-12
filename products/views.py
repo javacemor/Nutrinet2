@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework import status
+from django.db.models import Q
 
 import openpyxl
 import os
@@ -111,12 +112,41 @@ def my_product_filters(request, token):
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == 'GET':
-        pass
-        # serializer = UserSerializer(user)
-        # return Response(serializer.data)
+        personFilter = GroFilters.objects.get(user=user)
+        personFilterDetails = {
+            'nova_group': personFilter.nova_group,
+            'nutriscore_grade': personFilter.nutriscore_grade,
+            'Supermarket': personFilter.Supermarket,
+            'weekgro': personFilter.weekgro,
+            'maxnringredients': personFilter.maxnringredients,
+            'maxnradditives': personFilter.maxnradditives,
+            'origin': personFilter.origin,
+            'brand': personFilter.brand,
+        }
+
+        if personFilter.nutriscore_grade:
+            look_up = (
+                Q(stores__icontains=personFilter.Supermarket) 
+                & Q(brands__icontains=personFilter.brand)
+                & Q(nutriscore_grade=personFilter.nutriscore_grade)
+                & Q(nova_group__lte=personFilter.nova_group)
+            )
+        else:
+            look_up = (
+                Q(stores__icontains=personFilter.Supermarket) 
+                & Q(brands__icontains=personFilter.brand)
+                & Q(nova_group__lte=personFilter.nova_group)
+            )
+
+        
+
+        products = Product.objects.filter(look_up).distinct()
+        product_serializer = ProductSerializer(products, many=True)
+        return Response({'personFilter':personFilterDetails, 'data':product_serializer.data})
     elif request.method == 'POST':
         request.data['user'] = user.pk
-        p = GroFilters.objects.get(user=2)
+        p = GroFilters.objects.get(user=user)
+
         serializer = GroFiltersSerializer(p, data=request.data)
         if serializer.is_valid():
             serializer.save()

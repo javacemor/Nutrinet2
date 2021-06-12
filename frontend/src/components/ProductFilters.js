@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
 function ProductFilters() {
@@ -8,31 +8,49 @@ function ProductFilters() {
     const [toggleBar2Logic, setToggleBar2Logic] = useState(false);
     const [toggleBar3Logic, setToggleBar3Logic] = useState(false);
 
-    const [preferredSupermarket, setPreferredSupermarket] = useState('');
-    const [supermarketFrequency, setSupermarketFrequency] = useState(false);
-    const [maxIngredientPerFood, setMaxIngredientPerFood] = useState(false);
-    const [specificIngredientNeeded, setSpecificIngredientNeeded] = useState(false);
-    const [productAddictive, setProductAddictive] = useState(false);
-    const [nova0, setNova0] = useState(false);
-    const [nova1, setNova1] = useState(false);
-    const [nova2, setNova2] = useState(false);
-    const [nova3, setNova3] = useState(false);
-    const [nova4, setNova4] = useState(false);
-    const [nutriscoreA, setNutriscoreA] = useState(false);
-    const [nutriscoreB, setNutriscoreB] = useState(false);
-    const [nutriscoreC, setNutriscoreC] = useState(false);
-    const [saturatedFood, setSaturatedFood] = useState(false);
-    const [transFatFood, setTransFatFood] = useState(false);
-    const [lowSugar, setLowSugar] = useState(false);
-    const [lowSalt, setLowSalt] = useState(false);
-    const [highFiber, setHighFiber] = useState(false);
-    const [lowCarb, setLowCarb] = useState(false);
-    const [highCarb, setHighCarb] = useState(false);
-    const [preferredBrand, setPreferredBrand] = useState(false);
-    const [boycottBrand, setBoycottBrand] = useState(false);
-    const [preferredOrigin, setPreferredOrigin] = useState(false);
-    const [boycottOrigin, setboycottOrigin] = useState(false);
-    const [noPacking, setNoPacking] = useState(false);
+    const [Supermarket, setPreferredSupermarket] = useState('');
+    const [weekgro, setSupermarketFrequency] = useState(1);
+    const [maxnringredients, setMaxIngredientPerFood] = useState(100);
+    const [ingredient, setSpecificIngredientNeeded] = useState('');
+    const [maxnradditives, setProductAddictive] = useState(100);
+    const [nova_group, setNovaGroup] = useState(0);
+    const [nutriscore_grade, setNutriscoreGrade] = useState('a');
+    const [NOsatfats, setSaturatedFood] = useState(false);
+    const [NOtransfats, setTransFatFood] = useState(false);
+    const [lowsugar, setLowSugar] = useState(false);
+    const [lowsalt, setLowSalt] = useState(false);
+    const [highfiber, setHighFiber] = useState(false);
+    const [lowcarbo, setLowCarb] = useState(false);
+    const [highcarbo, setHighCarb] = useState(false);
+    const [brand, setPreferredBrand] = useState('');
+    const [NObrand, setBoycottBrand] = useState('');
+    const [origin, setPreferredOrigin] = useState('');
+    const [NOorigin, setboycottOrigin] = useState('');
+    const [NOpackaging, setNoPacking] = useState('');
+
+    useEffect(() => {
+        fetch(`api/products/my_product_filters/${token['loggedIn']}`)
+            .then(res => {
+                if(!res.ok){
+                    throw Error('could not fetch data from the endpoint');
+                }
+                return res.json();
+            })
+            .then(data => {
+                setPreferredSupermarket(data.personFilter.Supermarket);
+                setSupermarketFrequency(data.personFilter.weekgro);
+                setNovaGroup(data.personFilter.nova_group);
+                setNutriscoreGrade(data.personFilter.nutriscore_grade);
+                setPreferredBrand(data.personFilter.brand);
+            })
+            .catch(err =>{
+                if (err.name === 'AbortError'){
+                    console.log('fetch aborted');
+                }else{
+                    console.log('an error occured')
+                }
+            });
+        }, [])
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -43,35 +61,28 @@ function ProductFilters() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                preferredSupermarket,
-        supermarketFrequency,
-        maxIngredientPerFood,
-        specificIngredientNeeded,
-        productAddictive,
-        nova0,
-        nova1,
-        nova2,
-        nova3,
-        nova4,
-        nutriscoreA,
-        nutriscoreB,
-        nutriscoreC,
-        saturatedFood,
-        transFatFood,
-        lowSugar,
-        lowSalt, 
-        highFiber,
-        lowCarb,
-        highCarb,
-        preferredBrand,
-        boycottBrand,
-        preferredOrigin,
-        boycottOrigin,
-        noPacking,
+                weekgro,
+                maxnringredients,
+                Supermarket,
+                maxnradditives,
+                nova_group,
+                nutriscore_grade,
+                NOsatfats,
+                NOtransfats,
+                lowsugar,
+                lowsalt,
+                highfiber,
+                lowcarbo,
+                highcarbo,
+                brand,
+                NObrand,
+                origin,
+                NOorigin,
+                NOpackaging,
             })
         })
         .then(response => response.json())
-        .then(response => console.log(response))
+        .then(response => window.location.reload())
         .catch(error => console.log(error))
     }
 
@@ -84,6 +95,7 @@ function ProductFilters() {
     const toggleBar3 = () =>{
         setToggleBar3Logic(!toggleBar3Logic);
     }
+
     return (
         <>
           <div className="filters-section">
@@ -98,12 +110,12 @@ function ProductFilters() {
                                      <div className="icon">
                                         <div className="tooltip"> Name of preferred supermarket...</div>
                                          <label><i className="fas fa-info-circle"></i> Supermarket-poner lista, o q todos</label>
-                                         <input type="text" name=""  className="filter-input" onChange={(e) => setPreferredSupermarket(e.target.value)} />
+                                         <input type="text" name="" value={Supermarket}  className="filter-input" onChange={(e) => setPreferredSupermarket(e.target.value)} />
                                      </div>
                                      <div className="icon">
                                         <div className="tooltip"> How frequently do you go for grocery shopping?</div>
                                          <label><i className="fas fa-info-circle"></i> Semaines</label>
-                                         <input type="number" name="" className="filter-input" onChange={(e) => setSupermarketFrequency(e.target.value)} />
+                                         <input type="number" name="" value={weekgro} className="filter-input" onChange={(e) => setSupermarketFrequency(e.target.value)} />
                                      </div>
                                  </div>
                              </div>
@@ -115,7 +127,7 @@ function ProductFilters() {
                                      <div className="icon">
                                         <div className="tooltip"> What is the maximum amount of ingredients you want per food item?</div>
                                          <label><i className="fas fa-info-circle"></i> Max Nr Ingredients</label>
-                                         <input type="number" name=""  className="filter-input" onChange={(e) => setMaxIngredientPerFood(e.target.value)} />
+                                         <input type="number" name="" value={maxnringredients}  className="filter-input" onChange={(e) => setMaxIngredientPerFood(e.target.value)} />
                                      </div>
                                      <div className="icon">
                                         <div className="tooltip"> Name any specific ingredient you want</div>
@@ -125,47 +137,17 @@ function ProductFilters() {
                                      <div className="icon">
                                         <div className="tooltip"> No produits avec ces additives</div>
                                          <label><i className="fas fa-info-circle"></i> No produits avec ces additives - separar x coma poner lista, o q otros</label>
-                                         <input type="text" name="" className="filter-input" onChange={(e) => setProductAddictive(e.target.value)} />
+                                         <input type="number" name="" value={maxnradditives} className="filter-input" onChange={(e) => setProductAddictive(e.target.value)} />
                                      </div>
                                      <div className="icon ">
                                         <div className="tooltip"> Nova - What level of processed food? (NOVA 1-4) </div>
-                                         <label><i className="fas fa-info-circle"></i> NOVA 0</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNova0(e.target.value)} />
+                                         <label><i className="fas fa-info-circle"></i> NOVA Group (1-4)</label>
+                                         <input type="number" name="" value={nova_group} onChange={(e) => setNovaGroup(e.target.value)} />
                                      </div>
                                      <div className="icon mt-2">
-                                        <div className="tooltip"> Nova - What level of processed food? (NOVA 1-4)</div>
-                                         <label><i className="fas fa-info-circle"></i> NOVA 1</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNova1(e.target.value)} />
-                                     </div>
-                                     <div className="icon mt-2">
-                                        <div className="tooltip"> Nova - What level of processed food? (NOVA 1-4)</div>
-                                         <label><i className="fas fa-info-circle"></i> NOVA 2</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNova2(e.target.value)} />
-                                     </div>
-                                     <div className="icon mt-2">
-                                        <div className="tooltip"> Nova - What level of processed food? (NOVA 1-4)</div>
-                                         <label><i className="fas fa-info-circle"></i> NOVA 3</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNova3(e.target.value)} />
-                                     </div>
-                                     <div className="icon mt-2">
-                                        <div className="tooltip"> Nova - What level of processed food? (NOVA 1-4) </div>
-                                         <label><i className="fas fa-info-circle"></i> NOVA 4</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNova4(e.target.value)} />
-                                     </div>
-                                     <div className="icon mt-2">
-                                        <div className="tooltip"> Nutritional Score... </div>
-                                         <label><i className="fas fa-info-circle"></i> Nutriscore A</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNutriscoreA(e.target.value)}/>
-                                     </div>
-                                     <div className="icon mt-2">
-                                        <div className="tooltip"> Nutritional Score...</div>
-                                         <label><i className="fas fa-info-circle"></i> Nutriscore B</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNutriscoreB(e.target.value)} />
-                                     </div>
-                                     <div className="icon mt-2">
-                                        <div className="tooltip"> Nutritional Score</div>
-                                         <label><i className="fas fa-info-circle"></i> Nutriscore C</label>
-                                         <input type="checkbox" name="" onChange={(e) => setNutriscoreC(e.target.value)} />
+                                        <div className="tooltip"> Nutritional Score (a-e) </div>
+                                         <label><i className="fas fa-info-circle"></i> Nutriscore (a-e)</label>
+                                         <input type="text" name="" value={nutriscore_grade} onChange={(e) => setNutriscoreGrade(e.target.value)}/>
                                      </div>
                                      <div className="icon mt-2">
                                         <div className="tooltip"> Do you want fatty foods?</div>
@@ -211,7 +193,7 @@ function ProductFilters() {
                                  <div className="icon">
                                     <div className="tooltip"> What are your preferred brands?</div>
                                      <label><i className="fas fa-info-circle"></i> Preferred brand</label>
-                                     <input type="text" name="" className="filter-input" onChange={(e) => setPreferredBrand(e.target.value)} />
+                                     <input type="text" name="" value={brand} className="filter-input" onChange={(e) => setPreferredBrand(e.target.value)} />
                                  </div>
                                  <div className="icon">
                                     <div className="tooltip">Which brands do you want to boycott?</div>
@@ -221,7 +203,7 @@ function ProductFilters() {
                                  <div className="icon">
                                     <div className="tooltip">Which country do you prefer?</div>
                                      <label><i className="fas fa-info-circle"></i> Preferred origin</label>
-                                     <input type="text" name="" className="filter-input" onChange={(e) => setPreferredOrigin(e.target.value)} />
+                                     <input type="text" name="" value={origin} className="filter-input" onChange={(e) => setPreferredOrigin(e.target.value)} />
                                  </div>
                                 
                                 <div className="icon">

@@ -22,9 +22,8 @@ function Products({products}) {
             {
                 products.map((product) => (
                     <div className="product" key={product.id}>
-                        <img src={product.image_url} alt={product.product_name} />
-                        <h5>{product.product_name}</h5>
-                        <p>categories one, categories two</p>
+                        <img src={product.image_url} alt={product.product_name.substring(0, 15)} />
+                        <h5>{product.product_name.substring(0, 15)}</h5>
                         <button className="btn-sm mt-1" onClick={() => addProduct(product.id)}><i className="fas fa-plus"></i> Add</button>
                     </div>
                 ))

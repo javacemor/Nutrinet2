@@ -303,7 +303,10 @@ class GroFilters(models.Model):
     
     #Supermarket:
     weekgro = models.PositiveIntegerField(default=1) #Esto diferente a week de grocery list q por producto, aqui cuanto voy. En calculos solo q x2 si 2...No realmente en filtros, mas en userprofile
-    Supermarket=models.CharField(max_length=200,default=0) #mas de uno con coma??
+    Supermarket=models.CharField(max_length=200, null=True, blank=True) #mas de uno con coma??
+
+    nova_group = models.PositiveIntegerField(default=0, null=True, blank=True)
+    nutriscore_grade = models.CharField(max_length=90000, null=True, blank=True)
     
     #Processed:
     NOVA_0 = models.BooleanField(default='False') 
@@ -344,13 +347,13 @@ class GroFilters(models.Model):
     highcarbo= models.BooleanField(default='False')
        
     #Boicott:
-    brand=models.CharField(max_length=200,default=0)  
-    NObrand=models.CharField(max_length=200,default=0) #boicott
+    brand=models.CharField(max_length=200, null=True, blank=True)  
+    NObrand=models.CharField(max_length=200, null=True, blank=True) #boicott
     
-    origin=models.CharField(max_length=200,default=0) #country or region (UE..)
-    NOorigin=models.CharField(max_length=200,default=0) #boicott
+    origin=models.CharField(max_length=200, null=True, blank=True) #country or region (UE..)
+    NOorigin=models.CharField(max_length=200, null=True, blank=True) #boicott
     
-    NOpackaging=models.CharField(max_length=200,default=0) #mejor a elegir??
+    NOpackaging=models.CharField(max_length=200, null=True, blank=True) #mejor a elegir??
     
     
 def create_profile(sender, **kwargs):

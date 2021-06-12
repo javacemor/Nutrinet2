@@ -20,13 +20,10 @@ class GroFiltersSerializer(serializers.ModelSerializer):
         model = GroFilters
         fields = [
             'id', 'user', 'weekgro', 'Supermarket', 
-            'NOVA_0', 'NOVA_1', 'NOVA_2', 'NOVA_3', 'NOVA_4', 
             'NOingredients', 'maxnringredients', 'NOadditives', 
             'maxnradditives',
-            'Nutriscore_A',
-            'Nutriscore_B',
-            'Nutriscore_C',
-            'Nutriscore_D',
+            'nova_group',
+            'nutriscore_grade',
             'Allergens',
             'BIO',
             'Vegetarian',

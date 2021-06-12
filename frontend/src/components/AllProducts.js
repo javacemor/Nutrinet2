@@ -70,7 +70,7 @@ function AllProducts() {
                 </select>
             </div>
             
-            <h4 className="m-2">{products.length} products</h4>
+            <h4 className="m-2">{allProducts.length} products</h4>
            
             <div className="all-products grid">
                 {error && <h5>{error}</h5>}
