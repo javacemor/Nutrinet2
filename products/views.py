@@ -112,7 +112,11 @@ def my_product_filters(request, token):
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == 'GET':
-        personFilter = GroFilters.objects.get(user=user)
+        try:
+            personFilter = GroFilters.objects.get(user=user)
+        except GroFilters.DoesNotExist:
+            personFilter = GroFilters.objects.create(user=user)
+
         personFilterDetails = {
             'nova_group': personFilter.nova_group,
             'nutriscore_grade': personFilter.nutriscore_grade,
@@ -123,6 +127,11 @@ def my_product_filters(request, token):
             'origin': personFilter.origin,
             'brand': personFilter.brand,
         }
+
+        if not personFilter.brand:
+            personFilter.brand = ''
+        if not personFilter.Supermarket:
+            personFilter.Supermarket = ''
 
         if personFilter.nutriscore_grade:
             look_up = (
@@ -139,13 +148,18 @@ def my_product_filters(request, token):
             )
 
         
-
         products = Product.objects.filter(look_up).distinct()
         product_serializer = ProductSerializer(products, many=True)
         return Response({'personFilter':personFilterDetails, 'data':product_serializer.data})
     elif request.method == 'POST':
         request.data['user'] = user.pk
-        p = GroFilters.objects.get(user=user)
+
+        try:
+            p = GroFilters.objects.get(user=user)
+        except GroFilters.DoesNotExist:
+            p = GroFilters.objects.create(user=user)
+
+        
 
         serializer = GroFiltersSerializer(p, data=request.data)
         if serializer.is_valid():

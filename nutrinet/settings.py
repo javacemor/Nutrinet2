@@ -94,23 +94,23 @@ WSGI_APPLICATION = 'nutrinet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'df49jha7l5ln98',
-        'HOST': 'ec2-52-87-107-83.compute-1.amazonaws.com',
-        'USER': 'dnaruvddgjlojc',
-        'PORT': 5432,
-        'PASSWORD': '60949f5cbd3346bb3af7210f11b3f79898a379debd7a0646a9e23acafefc5471'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'df49jha7l5ln98',
+#         'HOST': 'ec2-52-87-107-83.compute-1.amazonaws.com',
+#         'USER': 'dnaruvddgjlojc',
+#         'PORT': 5432,
+#         'PASSWORD': '60949f5cbd3346bb3af7210f11b3f79898a379debd7a0646a9e23acafefc5471'
+#     }
+# }
 
 
 # Password validation
