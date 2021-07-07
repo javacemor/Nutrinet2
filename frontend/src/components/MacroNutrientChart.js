@@ -9,7 +9,7 @@ function MacroNutrientChart({ nutrientDetails }) {
         <div>
         <Pie 
             data={{
-              labels: ['Target Energie', 'Your Level'],
+              labels: ['Target Energie (g)', 'Your Level(g)'],
               datasets: [
                 {
                   // label: 'Macronutrients',
@@ -52,7 +52,7 @@ function MacroNutrientChart({ nutrientDetails }) {
         <div>
         <Bar 
             data={{
-              labels: ['Graisses','Protéines', 'Glucides'],
+              labels: ['Graisses (g)','Protéines (g)', 'Glucides (g)'],
               datasets: [
                 {
                   label: 'Min Target',
@@ -84,8 +84,8 @@ function MacroNutrientChart({ nutrientDetails }) {
                 {
                   label: "Max Target",
                   data: [nutrientDetails.details.fats_max, nutrientDetails.details.proteins_max, nutrientDetails.details.carbohydrates_max],
-                  backgroundColor: 'red',
-                  borderColor: 'red',
+                  backgroundColor: 'rgb(237, 85, 85)',
+                  borderColor: 'rgb(237, 85, 85)',
                 }
               ]
             }}

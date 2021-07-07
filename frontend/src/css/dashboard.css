@@ -265,7 +265,7 @@ div.nutrient-chart li.active a{
 	border: 1px solid var(--main-color);
 }
 div.customers.cover{
-	height: 270px;
+	/* height: 270px; */
 	overflow: scroll;
 }
 .customer{
