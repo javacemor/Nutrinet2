@@ -25,7 +25,13 @@ SECRET_KEY = 'up1^wf+d_e-ypx2d_(%nml4ri_kp3as3wlg-bgl7d7y^g@v)l0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nutrinet-demo.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'nutrinet-demo.herokuapp.com', 
+    'localhost', 
+    '127.0.0.1',
+    'thenutrinet.com',
+    'www.thenutrinet.com',
+    ]
 
 
 # Application definition
