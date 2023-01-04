@@ -1,6 +1,6 @@
 {
   "name": "tutorial",
-  "proxy": "https://nutrinet-demo.herokuapp.com/",
+  "proxy": "https://thawing-chamber-07461.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
