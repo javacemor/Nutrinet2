@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'nutrinet-demo.herokuapp.com', 
+    'thawing-chamber-07461.herokuapp.com',
     'localhost', 
     '127.0.0.1',
     'thenutrinet.com',
